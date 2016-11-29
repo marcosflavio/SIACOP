@@ -1,0 +1,14 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorator="layout/layoutBase">
+<head>	
+	<title>Inicio</title>
+</head>
+
+<section layout:fragment="content">
+	<!-- Conteudo da pagina vai aqui -->
+	<p>Bem vindo, vc esta logado como</p> <p sec:authentication="principal.authorities"></p>
+</section>
+</html>

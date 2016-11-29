@@ -49,7 +49,8 @@ public class Usuario {
 	private String turno; //{manha, tarde, noite}
 	@Column
 	private String situaçãoFuncional; // {Bolsista, Auxilio, Não recebe}
-
+	@Column
+	private String papel; //Papel do suaurio {'USER','PSICO'}
 	
 	public Usuario() {
 	}
@@ -233,5 +234,17 @@ public class Usuario {
 	public void setSituaçãoFuncional(String situaçãoFuncional) {
 		this.situaçãoFuncional = situaçãoFuncional;
 	}
+
+
+	public String getPapel() {
+		return papel;
+	}
+
+
+	public void setPapel(String papel) {
+		this.papel = papel;
+	}
+	
+	
 	
 }

@@ -11,5 +11,9 @@ public class LoginController {
 	public String login(){
 		return "login";
 	}
-
+	
+	@RequestMapping(value={"/home"}, method = { RequestMethod.GET})
+	public String home(){
+		return "home";
+	}
 }

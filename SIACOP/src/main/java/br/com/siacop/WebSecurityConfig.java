@@ -38,11 +38,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	 http.csrf().disable();
 	 http
 		 .authorizeRequests()
-		 .antMatchers("/").permitAll()
+		 .antMatchers("/**").permitAll()
 		 .antMatchers("/css/**", "/js/**","/img/**","/public/**").permitAll()
          .and()
      .formLogin()
-         .loginPage("/login").failureUrl("/login?error")
+         .loginPage("/login").failureUrl("/login?error").defaultSuccessUrl("/home",true)
          .usernameParameter("username").passwordParameter("password")
          .permitAll()
          .and()

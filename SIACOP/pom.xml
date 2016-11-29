@@ -65,7 +65,12 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-
+		<!-- Complemento do security para thymeleaf -->
+        <dependency>
+        	<groupId>org.thymeleaf.extras</groupId>
+        	<artifactId>thymeleaf-extras-springsecurity4</artifactId>
+        </dependency>
+       
 		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>

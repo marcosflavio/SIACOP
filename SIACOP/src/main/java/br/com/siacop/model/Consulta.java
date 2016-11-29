@@ -6,6 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -23,9 +24,10 @@ public class Consulta {
 	private String diaConsulta;
 	@Column
 	private String observacoes;
-	@Column
+	
+	@OneToOne(optional=false)
 	private Psicologa psicologa;
-	@Column
+	@OneToOne(optional=false)
 	private Usuario usuario;
 	@Column
 	private String statusConsulta;

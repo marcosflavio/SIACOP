@@ -39,7 +39,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	 http
 		 .authorizeRequests()
 		 .antMatchers("/**").permitAll()
-		 .antMatchers("/css/**", "/js/**","/img/**","/public/**").permitAll()
+		 .antMatchers("/css/**", "/js/**","/img/**","/public/**","/fullcalendar3/**").permitAll()
          .and()
      .formLogin()
          .loginPage("/login").failureUrl("/login?error").defaultSuccessUrl("/index",true)

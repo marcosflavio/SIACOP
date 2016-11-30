@@ -11,6 +11,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import br.com.siacop.model.Usuario;
+
 @Controller
 public class LoginController {
 	
@@ -26,11 +28,18 @@ public class LoginController {
 	
 	@RequestMapping(value={"/index"}, method = { RequestMethod.GET})
 	public String index(Model model, HttpServletRequest request){
-		if(request.isUserInRole("ROLE_PSICO"))
-			return "index";
-		if(request.isUserInRole("ROLE_USER"))
-			return "home";
-
-		return "403";
+//		Usuario dummy = new Usuario();
+//		dummy.setNome("Mocked user");
+//		model.addAttribute("usuario", dummy);
+//		if(request.isUserInRole("ROLE_PSICO"))
+//			return "index";
+//		if(request.isUserInRole("ROLE_USER"))
+//			return "home";
+//
+//		return "403";
+		Usuario dummy = new Usuario();
+		dummy.setNome("Mocked user");
+		model.addAttribute("usuario", dummy);
+		return "index";
 	}
 }

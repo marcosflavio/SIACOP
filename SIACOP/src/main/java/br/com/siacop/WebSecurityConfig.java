@@ -42,7 +42,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		 .antMatchers("/css/**", "/js/**","/img/**","/public/**").permitAll()
          .and()
      .formLogin()
-         .loginPage("/login").failureUrl("/login?error").defaultSuccessUrl("/home",true)
+         .loginPage("/login").failureUrl("/login?error").defaultSuccessUrl("/index",true)
          .usernameParameter("username").passwordParameter("password")
          .permitAll()
          .and()

@@ -13,6 +13,8 @@ public interface IServicePsicologa {
 	public Psicologa findOne(int id);
 	
 	public Psicologa update(Psicologa psicologa);
+	
+	public Psicologa findByLogin(String login);
 
 	public void delete(int id);
 }

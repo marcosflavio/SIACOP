@@ -28,18 +28,10 @@ public class LoginController {
 	
 	@RequestMapping(value={"/index"}, method = { RequestMethod.GET})
 	public String index(Model model, HttpServletRequest request){
-//		Usuario dummy = new Usuario();
-//		dummy.setNome("Mocked user");
-//		model.addAttribute("usuario", dummy);
-//		if(request.isUserInRole("ROLE_PSICO"))
-//			return "index";
-//		if(request.isUserInRole("ROLE_USER"))
-//			return "home";
-//
-//		return "403";
-		Usuario dummy = new Usuario();
-		dummy.setNome("Mocked user");
-		model.addAttribute("usuario", dummy);
-		return "index";
+		if(request.isUserInRole("ROLE_PSICO"))
+			return "redirect:dashboard";
+		if(request.isUserInRole("ROLE_USER"))
+			return "home";
+		return "403";
 	}
 }

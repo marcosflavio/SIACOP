@@ -26,7 +26,12 @@ public class ServicePsicologa implements IServicePsicologa {
 	public Psicologa findOne(int id) {
 		return repository.findOne(id);
 	}
-
+	
+	@Override
+	public Psicologa findByLogin(String login) {
+		return repository.findByLogin(login);
+	}
+	
 	@Override
 	public Psicologa update(Psicologa psicologa) {
 		return repository.save(psicologa);

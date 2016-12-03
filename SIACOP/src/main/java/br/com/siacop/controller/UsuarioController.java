@@ -31,7 +31,6 @@ public class UsuarioController {
 	
 	@RequestMapping("/novo")
 	public ModelAndView novo(Usuario usuario) {
-		
 		ModelAndView mv = new ModelAndView("/usuario/cadastroUsuario"); 
 		mv.addObject("tipoCurso", TipoCurso.values());
 		mv.addObject("tipoEstadoCivil", TipoEstadoCivil.values());

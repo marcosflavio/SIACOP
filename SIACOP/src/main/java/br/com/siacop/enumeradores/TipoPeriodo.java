@@ -2,7 +2,7 @@ package br.com.siacop.enumeradores;
 
 public enum TipoPeriodo {
 	
-	MANHA("Manha"), TARDE("Tarde"), NOITE("Noite");
+	MANHA("Manhã"), TARDE("Tarde"), NOITE("Noite");
 	
 	private String periodo;
 	

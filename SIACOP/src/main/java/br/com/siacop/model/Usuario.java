@@ -55,10 +55,12 @@ public class Usuario {
 	private String estadoCivil; // {Casado, Solteiro, Divorciado, União Estável}
 
 	@NotNull(message = "O campo Filhos deve ser selecionado!")
+	@Enumerated(EnumType.STRING)
 	@Column
 	private TipoFilhos filhos;
 
 	@NotNull(message = "O campo Menores deve ser selecionado!")
+	@Enumerated(EnumType.STRING)
 	@Column
 	private TipoMenores menores;
 
@@ -90,6 +92,7 @@ public class Usuario {
 
 	@NotNull(message = "O campo Semestre deve ser selecionado!")
 	@Column
+	@Enumerated(EnumType.STRING)
 	private TipoSemestre semestre;
 
 	@NotNull(message = "O campo Turno deve ser selecionado!")

@@ -19,28 +19,30 @@
 					<h1 class="text-center">Solicitar consulta</h1>
 				</div>				
 				<div class="account-wall">					
-					<form th:method="post" action="/solicitarConsulta/novo">
-						<label for="encaminhadoPor">Encaminhado por (Obrigatório)</label>
-						<select id = "encaminhadoPor" name = "encaminhadoPor" class="form-control" required = "required" autofocus="autofocus">
-							<option value = "" disabled = "disabled" selected="selected">Escolha uma op&ccedil;&atilde;o</option>
-							<option value = "Vontade propria">Vontade pr&oacute;pria</option>
-							<option value = "Professor">Professor</option>
-							<option value = "Diretoria">Diretoria</option>
-						</select>
+					<form method="POST" th:object = "${solicitacaoConsulta}">
+						<div class = "form-group" th:classappend="${#fields.hasErrors('encaminhadoPor')} ? has-error">				
+							<label for="encaminhadoPor" class = "control-label">Encaminhado por (Obrigatório)</label>
+							<select id = "encaminhadoPor" name = "encaminhadoPor" class="form-control" required = "required" autofocus="autofocus" th:field="*{encaminhadoPor}">
+								<option th:each="encaminhamento : ${tipoEncaminhamento}" th:value="${encaminhamento}" th:text="${encaminhamento.encaminhamento}"></option>
+							</select>
+						</div>
 						
-						<label for="motivo"> Qual o motivo da solicitação para o acompanhamento? (Obrigatório)</label>
-						<textarea id = "motivo" name = "motivo" class = "form-control textArea" placeholder="Digite o motivo para o acompanhamento." required = "required"></textarea>
+						<div class = "form-group" th:classappend="${#fields.hasErrors('motivo')} ? has-error">
+							<label for="motivo" class = "control-label"> Qual o motivo da solicitação para o acompanhamento? (Obrigatório)</label>
+							<textarea id = "motivo" class = "form-control textArea" placeholder="Digite o motivo para o acompanhamento." required = "required" th:field="*{motivo}"></textarea>
+						</div>
 						
-						<label for="melhorDia">Melhor dia para o acompanhamento (Obrigatório)</label>					
-						<input type="text" id = "melhorDia" name="melhorDia" class="form-control" placeholder="DD/MM/AAAA" required="required"></input>
+						<div class = "form-group" th:classappend="${#fields.hasErrors('melhorDia')} ? has-error">
+							<label for="melhorDia" class = "control-label">Melhor dia para o acompanhamento (Obrigatório)</label>					
+							<input type="text" id = "melhorDia" name="melhorDia" class="form-control" placeholder="DD/MM/AAAA" required="required" th:field="*{melhorDia}"></input>
+						</div>
 						
-						<label for="melhorPeriodo">Melhor período para o acompanhamento</label>
-						<select id = "melhorPeriodo" name = "encaminhadoPor" class="form-control">
-							<option value = "" disabled = "disabled" selected="selected">Escolha uma op&ccedil;&atilde;o</option>
-							<option value = "Manha">Manhã</option>
-							<option value = "Tarde">Tarde</option>
-							<option value = "Noite">Noite</option>
-						</select>
+						<div class = "form-group" th:classappend="${#fields.hasErrors('melhorPeriodo')} ? has-error">
+							<label for="melhorPeriodo" class = "control-label">Melhor período para o acompanhamento</label>
+							<select id = "melhorPeriodo" class="form-control" th:field="*{melhorPeriodo}">
+								<option th:each="periodo : ${tipoPeriodo}" th:value="${periodo}" th:text="${periodo.periodo}"></option>
+							</select>
+						</div>
 									
 						<button class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button>
 					</form>

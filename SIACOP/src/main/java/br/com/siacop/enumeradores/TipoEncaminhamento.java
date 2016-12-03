@@ -2,7 +2,7 @@ package br.com.siacop.enumeradores;
 
 public enum TipoEncaminhamento {
 	
-	VONTADEPROPRIA("Vontade propria"), PROFESSOR("Professor"), DIRETORIA("Diretoria");
+	VONTADEPROPRIA("Vontade própria"), PROFESSOR("Professor"), DIRETORIA("Diretoria");
 	
 	private String encaminhamento;
 	

@@ -15,26 +15,22 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	DataSource dataSource;
 	
-	//configuração de login 
-	//verifica os dados contidos no banco
+	//configuração de login
 	@Autowired
-	public void configAuthentication(AuthenticationManagerBuilder auth) throws Exception {
-
-	  auth.inMemoryAuthentication().withUser("usuario").password("senha").roles("USER");
+	public void configAuthentication(AuthenticationManagerBuilder auth_psicologa, AuthenticationManagerBuilder auth_usuario) throws Exception {
+		
 	//Psicologa
-	  auth.jdbcAuthentication().dataSource(dataSource)
+	  auth_psicologa.jdbcAuthentication().dataSource(dataSource)
 		.usersByUsernameQuery(
 			"select login,senha,1 from psicologa where login=?")
 		.authoritiesByUsernameQuery(
 			"select login,papel from psicologa where login=?");
 	  
-	  //Geral
-//	  auth.jdbcAuthentication().dataSource(dataSource)
-//		.usersByUsernameQuery(
-//			"select email,senha,1 from usuario where email=?")
-//		.authoritiesByUsernameQuery(
-//			"select usuario.email, usuario_funcao.funcao from usuario join usuario_funcao on usuario.idUsuario = usuario_funcao.idUsuario where usuario.email=?");
-	  	//Query testada no SQL server 5.6
+	  auth_usuario.jdbcAuthentication().dataSource(dataSource)
+	  .usersByUsernameQuery(
+			"select login,senha,1 from usuario where login=?")
+	  .authoritiesByUsernameQuery(
+			"select login,'ROLE_USER' from usuario where login=?");
 	  
 	}	
 	

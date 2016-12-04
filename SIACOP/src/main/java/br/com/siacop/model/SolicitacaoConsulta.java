@@ -2,11 +2,16 @@ package br.com.siacop.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import br.com.siacop.enumeradores.TipoEncaminhamento;
+import br.com.siacop.enumeradores.TipoPeriodo;
 
 @Entity
 @Table(name = "solicitacao_consulta")
@@ -21,7 +26,8 @@ public class SolicitacaoConsulta {
 	private Usuario usuario;	
 	
 	@Column
-	private String encaminhadoPor; // {Vontade Própria, Professor, Diretoria}
+	@Enumerated(EnumType.STRING)
+	private TipoEncaminhamento encaminhadoPor; // {Vontade Própria, Professor, Diretoria}
 	
 	@Column
 	private String motivo;
@@ -30,7 +36,8 @@ public class SolicitacaoConsulta {
 	private String melhorDia; // {seg, terca, quarta, quinta, sexta}
 	
 	@Column
-	private String melhorPeriodo;// {Manhã, tarde, noite}
+	@Enumerated(EnumType.STRING)
+	private TipoPeriodo melhorPeriodo;// {Manhã, tarde, noite}
 	
 	public SolicitacaoConsulta() {
 	}
@@ -51,11 +58,11 @@ public class SolicitacaoConsulta {
 		this.usuario = usuario;
 	}
 
-	public String getEncaminhadoPor() {
+	public TipoEncaminhamento getEncaminhadoPor() {
 		return encaminhadoPor;
 	}
 
-	public void setEncaminhadoPor(String encaminhadoPor) {
+	public void setEncaminhadoPor(TipoEncaminhamento encaminhadoPor) {
 		this.encaminhadoPor = encaminhadoPor;
 	}
 
@@ -75,13 +82,12 @@ public class SolicitacaoConsulta {
 		this.melhorDia = melhorDia;
 	}
 
-	public String getMelhorPeriodo() {
+	public TipoPeriodo getMelhorPeriodo() {
 		return melhorPeriodo;
 	}
 
-	public void setMelhorPeriodo(String melhorPeriodo) {
+	public void setMelhorPeriodo(TipoPeriodo melhorPeriodo) {
 		this.melhorPeriodo = melhorPeriodo;
-	}
-	
+	}	
 	
 }

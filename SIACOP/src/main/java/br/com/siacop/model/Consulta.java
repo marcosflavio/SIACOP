@@ -24,6 +24,8 @@ public class Consulta {
 	private String diaConsulta;
 	@Column
 	private String observacoes;
+	@Column
+	private String horario;
 	
 	@OneToOne(optional=false)
 	private Psicologa psicologa;
@@ -37,7 +39,7 @@ public class Consulta {
 	private Boolean desconfirma;
 	@Column
 	private Boolean retorno;
-
+	
 	public Consulta() {
 		super();
 	}
@@ -128,6 +130,14 @@ public class Consulta {
 
 	public void setRetorno(Boolean retorno) {
 		this.retorno = retorno;
+	}
+
+	public String getHorario() {
+		return horario;
+	}
+
+	public void setHorario(String horario) {
+		this.horario = horario;
 	}
 	
 }

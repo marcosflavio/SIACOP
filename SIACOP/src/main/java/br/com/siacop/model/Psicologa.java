@@ -20,7 +20,9 @@ public class Psicologa {
 	@Column
 	private String login;
 	@Column
-	private String matriculaCRP; // Conselho Regional de Psicologia  
+	private String matriculaCRP; // Conselho Regional de Psicologia
+	@Column
+	private String papel; //Papel do suaurio {'USER','PSICO'}
 
 	public Psicologa() {
 	}
@@ -63,6 +65,14 @@ public class Psicologa {
 
 	public void setMatriculaCRP(String matriculaCRP) {
 		this.matriculaCRP = matriculaCRP;
+	}
+
+	public String getPapel() {
+		return papel;
+	}
+
+	public void setPapel(String papel) {
+		this.papel = papel;
 	}
 	
 	

@@ -16,7 +16,10 @@ public class ServiceUsuario implements IServiceUsuario{
 	@Autowired
 	private IRepositoryUsuario repository;
 	
-
+	@Override
+	public Usuario findByLogin(String login) {
+		return repository.findByLogin(login);
+	}
 
 	@Override
 	public List<Usuario> findAll() {

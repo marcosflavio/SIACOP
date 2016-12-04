@@ -4,6 +4,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -13,12 +15,20 @@ public class SolicitacaoConsulta {
 	@Id
 	@GeneratedValue
 	private Integer idSolicitacao;
+	
+	@ManyToOne
+	@JoinColumn(name = "id")
+	private Usuario usuario;	
+	
 	@Column
 	private String encaminhadoPor; // {Vontade Própria, Professor, Diretoria}
+	
 	@Column
 	private String motivo;
+	
 	@Column
-	private String melhorDia; // {seg, terc, quarta, quinta, sexta}
+	private String melhorDia; // {seg, terca, quarta, quinta, sexta}
+	
 	@Column
 	private String melhorPeriodo;// {Manhã, tarde, noite}
 	
@@ -31,6 +41,14 @@ public class SolicitacaoConsulta {
 
 	public void setIdSolicitacao(Integer idSolicitacao) {
 		this.idSolicitacao = idSolicitacao;
+	}	
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 
 	public String getEncaminhadoPor() {

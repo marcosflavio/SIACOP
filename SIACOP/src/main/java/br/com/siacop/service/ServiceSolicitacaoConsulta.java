@@ -40,5 +40,4 @@ public class ServiceSolicitacaoConsulta implements IServiceSolicitacaoConsulta {
 	public SolicitacaoConsulta save(SolicitacaoConsulta solicitacao) {
 		return repository.save(solicitacao);
 	}
-
 }

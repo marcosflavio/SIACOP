@@ -7,7 +7,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import br.com.siacop.model.Psicologa;
-import br.com.siacop.model.Usuario;
 import br.com.siacop.service.IServicePsicologa;
 import br.com.siacop.service.ServicePsicologa;
 

@@ -5,9 +5,11 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import br.com.siacop.model.Psicologa;
 import br.com.siacop.service.IServicePsicologa;
+import br.com.siacop.service.IServiceSolicitacaoConsulta;
 import br.com.siacop.service.ServicePsicologa;
 
 @Controller
@@ -16,11 +18,26 @@ public class PsicologaController {
 	@Autowired
 	ServicePsicologa psicologaSvc;
 	
+	@Autowired
+	IServiceSolicitacaoConsulta serviceSolicitacaoConsulta;
+	
 	@RequestMapping("/dashboard")
 	public String dashboard(Model model){
 		Psicologa psi = getCurrentUser(psicologaSvc);
 		model.addAttribute("usuario",psi);
 		return "index";
+	}
+	
+	
+	@RequestMapping("/listaConsultas")
+	public ModelAndView listaConsultas(Model model){
+		ModelAndView mv = new ModelAndView("listaConsultasStub");		
+		Psicologa psi = getCurrentUser(psicologaSvc);
+		
+		model.addAttribute("usuario", psi);		
+		mv.addObject("solicitacoesConsulta", serviceSolicitacaoConsulta.findAll());
+		
+		return mv;
 	}
 	
 	

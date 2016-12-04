@@ -1,19 +1,14 @@
 package br.com.siacop.controller;
 
-import java.security.Principal;
-
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import br.com.siacop.model.Usuario;
 import br.com.siacop.service.IServicePsicologa;
 import br.com.siacop.service.IServiceUsuario;
 

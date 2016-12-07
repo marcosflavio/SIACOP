@@ -47,9 +47,9 @@ public class UsuarioController {
 	@RequestMapping(value = "/novo", method = RequestMethod.POST)
 	public ModelAndView salva(@Valid Usuario usuario, BindingResult result, RedirectAttributes attributes) {
 		
-		if (result.hasErrors()) {
-			return novo(usuario);
-		}
+		if (result.hasErrors())
+			return novo(usuario);		
+		
 		service.save(usuario);
 		attributes.addFlashAttribute("mensagemSucesso", "Usuário cadastrado com sucesso!");
 		

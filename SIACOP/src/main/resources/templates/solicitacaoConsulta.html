@@ -44,7 +44,9 @@
 						
 						<div class = "form-group" th:classappend="${#fields.hasErrors('melhorDia')} ? has-error">
 							<label for="melhorDia" class = "control-label">Melhor dia para o acompanhamento (Obrigatório)</label>					
-							<input type="text" id = "melhorDia" name="melhorDia" class="form-control" placeholder="DD/MM/AAAA" required="required" th:field="*{melhorDia}"></input>
+							<select id = "melhorDia	" class="form-control" th:field="*{melhorDia}">
+								<option th:each="dia : ${tipoDiaSemana}" th:value="${dia}" th:text="${dia.diaSemana}"></option>
+							</select>
 						</div>
 						
 						<div class = "form-group" th:classappend="${#fields.hasErrors('melhorPeriodo')} ? has-error">

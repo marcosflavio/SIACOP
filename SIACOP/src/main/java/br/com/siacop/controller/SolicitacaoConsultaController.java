@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import br.com.siacop.enumeradores.TipoDiaSemana;
 import br.com.siacop.enumeradores.TipoEncaminhamento;
 import br.com.siacop.enumeradores.TipoPeriodo;
 import br.com.siacop.model.SolicitacaoConsulta;
@@ -18,23 +19,23 @@ import br.com.siacop.model.Usuario;
 import br.com.siacop.service.IServiceSolicitacaoConsulta;
 
 @Controller
-
 public class SolicitacaoConsultaController {
+
 	@Autowired
 	private IServiceSolicitacaoConsulta service;
 
-	@RequestMapping(value = "/solicitarConsulta")
+	@RequestMapping(value = "/solicitacaoConsulta")
 	public ModelAndView novo(SolicitacaoConsulta solicitacaoConsulta) {
-		ModelAndView mv = new ModelAndView("solicitarConsulta");
+		ModelAndView mv = new ModelAndView("solicitacaoConsulta");
 		mv.addObject("tipoEncaminhamento", TipoEncaminhamento.values());
 		mv.addObject("tipoPeriodo", TipoPeriodo.values());
+		mv.addObject("tipoDiaSemana", TipoDiaSemana.values());
 
 		return mv;
 	}
 
-	@RequestMapping(value = "/solicitarConsulta", method = RequestMethod.POST)
-	public ModelAndView salva(@Valid SolicitacaoConsulta solicitacaoConsulta, BindingResult result,
-			RedirectAttributes attributes, HttpSession session) {
+	@RequestMapping(value = "/solicitacaoConsulta", method = RequestMethod.POST)
+	public ModelAndView salva(@Valid SolicitacaoConsulta solicitacaoConsulta, BindingResult result, RedirectAttributes attributes, HttpSession session) {
 		try {
 			if (result.hasErrors())
 				return novo(solicitacaoConsulta);
@@ -46,10 +47,10 @@ public class SolicitacaoConsultaController {
 
 			attributes.addFlashAttribute("mensagemSucesso", "Solicitação de consulta realizada com sucesso!");
 
-			return new ModelAndView("redirect:/solicitarConsulta");
+			return new ModelAndView("redirect:/solicitacaoConsulta");
 		} catch (ClassCastException e) {
 			attributes.addFlashAttribute("mensagemSucesso", "Parece que você é uma psicóloga tentando marcar uma consulta?!");
-			return new ModelAndView("redirect:/solicitarConsulta");
+			return new ModelAndView("redirect:/solicitacaoConsulta");
 		}
 	}
 }

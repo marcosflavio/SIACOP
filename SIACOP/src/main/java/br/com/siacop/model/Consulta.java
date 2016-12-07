@@ -4,10 +4,19 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
+import br.com.siacop.enumeradores.TipoDiaSemana;
+import br.com.siacop.enumeradores.TipoPeriodo;
+import br.com.siacop.enumeradores.TipoStatusConsulta;
 
 @Entity
 @Table(name = "consulta")
@@ -16,32 +25,31 @@ public class Consulta {
 	@Id
 	@GeneratedValue
 	private Integer idConsulta;
+	@ManyToOne
+	@JoinColumn(name = "idUsuario")
+	private Usuario usuario;
+	@ManyToOne
+	@JoinColumn(name = "idPsicologa")
+	private Psicologa psicologa;
 	@Column
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date dataConsulta;
 	@Column
-	private String periodoConsulta;
+	@Enumerated(EnumType.STRING)
+	private TipoPeriodo periodoConsulta;
 	@Column
-	private String diaConsulta;
+	@Enumerated(EnumType.STRING)
+	private TipoDiaSemana diaConsulta;
 	@Column
 	private String observacoes;
 	@Column
 	private String horario;
-	
-	@OneToOne(optional=false)
-	private Psicologa psicologa;
-	@OneToOne(optional=false)
-	private Usuario usuario;
 	@Column
-	private String statusConsulta;
-	@Column
-	private Boolean confirma;
-	@Column
-	private Boolean desconfirma;
-	@Column
-	private Boolean retorno;
+	@Enumerated(EnumType.STRING)
+	private TipoStatusConsulta statusConsulta;
 	
 	public Consulta() {
-		super();
+		super();		
 	}
 
 	public Integer getIdConsulta() {
@@ -60,19 +68,19 @@ public class Consulta {
 		this.dataConsulta = dataConsulta;
 	}
 
-	public String getPeriodoConsulta() {
+	public TipoPeriodo getPeriodoConsulta() {
 		return periodoConsulta;
 	}
 
-	public void setPeriodoConsulta(String periodoConsulta) {
+	public void setPeriodoConsulta(TipoPeriodo periodoConsulta) {
 		this.periodoConsulta = periodoConsulta;
 	}
 
-	public String getDiaConsulta() {
+	public TipoDiaSemana getDiaConsulta() {
 		return diaConsulta;
 	}
 
-	public void setDiaConsulta(String diaConsulta) {
+	public void setDiaConsulta(TipoDiaSemana diaConsulta) {
 		this.diaConsulta = diaConsulta;
 	}
 
@@ -99,37 +107,13 @@ public class Consulta {
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
-
-	public String getStatusConsulta() {
+	
+	public TipoStatusConsulta getStatusConsulta() {
 		return statusConsulta;
 	}
 
-	public void setStatusConsulta(String statusConsulta) {
+	public void setStatusConsulta(TipoStatusConsulta statusConsulta) {
 		this.statusConsulta = statusConsulta;
-	}
-
-	public Boolean getConfirma() {
-		return confirma;
-	}
-
-	public void setConfirma(Boolean confirma) {
-		this.confirma = confirma;
-	}
-
-	public Boolean getDesconfirma() {
-		return desconfirma;
-	}
-
-	public void setDesconfirma(Boolean desconfirma) {
-		this.desconfirma = desconfirma;
-	}
-
-	public Boolean getRetorno() {
-		return retorno;
-	}
-
-	public void setRetorno(Boolean retorno) {
-		this.retorno = retorno;
 	}
 
 	public String getHorario() {

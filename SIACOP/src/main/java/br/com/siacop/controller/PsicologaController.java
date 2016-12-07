@@ -14,38 +14,36 @@ import br.com.siacop.service.ServicePsicologa;
 
 @Controller
 public class PsicologaController {
-	
+
 	@Autowired
-	ServicePsicologa psicologaSvc;
-	
+	private ServicePsicologa psicologaSvc;
+
 	@Autowired
-	IServiceSolicitacaoConsulta serviceSolicitacaoConsulta;
-	
+	private IServiceSolicitacaoConsulta serviceSolicitacaoConsulta;
+
 	@RequestMapping("/dashboard")
-	public String dashboard(Model model){
+	public String dashboard(Model model) {
 		Psicologa psi = getCurrentUser(psicologaSvc);
-		model.addAttribute("usuario",psi);
+		model.addAttribute("usuario", psi);
 		return "index";
 	}
-	
-	
-	@RequestMapping("/listaConsultas")
-	public ModelAndView listaConsultas(Model model){
-		ModelAndView mv = new ModelAndView("listaConsultasStub");		
+
+	@RequestMapping("/listaSolicitacoesConsultas")
+	public ModelAndView listaConsultas(Model model) {
+		ModelAndView mv = new ModelAndView("listaSolicitacoesConsultasStub");
 		Psicologa psi = getCurrentUser(psicologaSvc);
-		
-		model.addAttribute("usuario", psi);		
+
+		model.addAttribute("usuario", psi);
 		mv.addObject("solicitacoesConsulta", serviceSolicitacaoConsulta.findAll());
-		
+
 		return mv;
 	}
-	
-	
+
 	/*
 	 * Retorna a psicologa atualmente logada atraves do spring security
 	 */
 	@Autowired
-	public static Psicologa getCurrentUser(IServicePsicologa psicologaSvc){
+	public static Psicologa getCurrentUser(IServicePsicologa psicologaSvc) {
 		String nome = SecurityContextHolder.getContext().getAuthentication().getName();
 		Psicologa psico = psicologaSvc.findByLogin(nome);
 		return psico;

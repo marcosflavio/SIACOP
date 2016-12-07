@@ -10,6 +10,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import br.com.siacop.enumeradores.TipoDiaSemana;
 import br.com.siacop.enumeradores.TipoEncaminhamento;
 import br.com.siacop.enumeradores.TipoPeriodo;
 
@@ -22,7 +23,7 @@ public class SolicitacaoConsulta {
 	private Integer idSolicitacao;
 	
 	@ManyToOne
-	@JoinColumn(name = "id")
+	@JoinColumn(name = "idUsuario")
 	private Usuario usuario;	
 	
 	@Column
@@ -33,7 +34,8 @@ public class SolicitacaoConsulta {
 	private String motivo;
 	
 	@Column
-	private String melhorDia; // {seg, terca, quarta, quinta, sexta}
+	@Enumerated(EnumType.STRING)
+	private TipoDiaSemana melhorDia; // {seg, terca, quarta, quinta, sexta}
 	
 	@Column
 	@Enumerated(EnumType.STRING)
@@ -74,11 +76,11 @@ public class SolicitacaoConsulta {
 		this.motivo = motivo;
 	}
 
-	public String getMelhorDia() {
+	public TipoDiaSemana getMelhorDia() {
 		return melhorDia;
 	}
-
-	public void setMelhorDia(String melhorDia) {
+	
+	public void setMelhorDia(TipoDiaSemana melhorDia) {
 		this.melhorDia = melhorDia;
 	}
 

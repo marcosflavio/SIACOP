@@ -1,0 +1,70 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout/layoutBase">
+<head>
+<title>Solicitar Consulta</title>
+<link rel="stylesheet" th:href="@{http://www.w3schools.com/lib/w3.css}"></link>
+<link rel="stylesheet" th:href="@{/css/login.css}"></link>
+</head>
+
+<section layout:fragment="content">
+	<!-- Conteudo da pagina vai aqui -->
+	<div class="container">
+		<div class="row">
+
+			<div class="alert  alert-success  alert-dismissible" role="alert"
+				th:if="${not #strings.isEmpty(mensagemSucesso)}">
+				<button type="button" class="close" data-dismiss="alert">
+					<span aria-hidden="true">&times;</span>
+				</button>
+
+				<span th:text="${mensagemSucesso}"></span>
+			</div>
+
+			<div class="col-sm-6 col-md-4 col-md-offset-4">
+				<div class="row">
+					<h1 class="text-center">Solicitar consulta</h1>
+				</div>				
+				<div class="account-wall">					
+					<form method="POST" th:object = "${consulta}">
+						<input type="hidden" name = "idSolicitacao" th:value = "${idSolicitacao}" />
+						<div class = "form-group" th:classappend="${#fields.hasErrors('usuario')} ? has-error">
+							<label for="nomeUsuario" class = "control-label">Nome do usuário</label>					
+							<span id = "nomeUsuario" th:text="${consulta.usuario.nome}"></span>
+							<input type = "hidden" name = "usuario" th:field="${consulta.usuario}" th:value = "${consulta.usuario}" /> 
+						</div>
+						<div class = "form-group" th:classappend="${#fields.hasErrors('psicologa')} ? has-error">
+							<label for="nomePsicologa" class = "control-label">Nome da psicóloga:</label>					
+							<span id = "nomePsicologa" th:text="${consulta.psicologa.nome}"></span>
+							<input type = "hidden" name = "psicologa" th:field="${consulta.psicologa}" th:value = "${consulta.psicologa}" />
+						</div>
+						<div class = "form-group" th:classappend="${#fields.hasErrors('diaConsulta')} ? has-error">
+							<label for="diaConsulta" class = "control-label">Dia da consulta:</label>					
+							<select id = "diaConsulta" class="form-control" th:field="*{diaConsulta}">
+								<option th:each="diaConsulta : ${tipoDiaSemana}" th:value="${diaConsulta}" th:text="${diaConsulta.diaSemana}"></option>
+							</select>
+						</div>						
+						<div class = "form-group" th:classappend="${#fields.hasErrors('periodoConsulta')} ? has-error">
+							<label for="periodoConsulta" class = "control-label">Período da consulta:</label>
+							<select id = "periodoConsulta" class="form-control" th:field="*{periodoConsulta}">
+								<option th:each="periodoConsulta : ${tipoPeriodo}" th:value="${periodoConsulta}" th:text="${periodoConsulta.periodo}"></option>
+							</select>
+						</div>
+						<div class = "form-group" th:classappend="${#fields.hasErrors('dataConsulta')} ? has-error">
+							<label for="dataConsulta" class = "control-label">Data da consulta:</label>
+							<input type = "date" id = "dataConsulta" class = "form-control"  required = "required" th:field="*{dataConsulta}" />
+						</div>
+						<div class = "form-group" th:classappend="${#fields.hasErrors('horario')} ? has-error">
+							<label for="horario" class = "control-label">Hor&aacute;rio da consulta:</label>
+							<input type = "time" id = "horario" class = "form-control" required = "required" th:field="*{horario}" />
+						</div>
+						<button class="btn btn-lg btn-primary btn-block" type="submit">Enviar</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+</html>

@@ -1,11 +1,29 @@
 $('#calendar').fullCalendar({
+	locale : 'pt-br',
+	header : {
+		left : 'prev,next today',
+		center : 'title',
+		right : 'month,basicWeek,basicDay'
+	},
+	events : {
+		url : "/getconsultas",
+		type : 'GET',
+		data : {
+			
+		},
+		error : function() {
+			alert('Erro ao obter eventos do servidor');
+		},
+		color: '#2514f7'
+	},
+	defaultDate : '2016-09-12',
+	navLinks : true, // can click day/week names to navigate views
+	eventLimit : true, // allow "more" link when too many events
 	loading: function( isLoading, view ) {
         if(isLoading) {
-             $('#calendar').hide();
              $('#loading').show();
         } else {
-        	$('#loading').hide();
-        	$('#calendar').show(); 
+        	$('#loading').hide(); 
         }
     }
 });

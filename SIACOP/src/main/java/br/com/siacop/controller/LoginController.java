@@ -33,7 +33,7 @@ public class LoginController {
 	public String index(HttpServletRequest request, HttpSession session) {
 		String login = request.getUserPrincipal().getName();
 		Object usr = psicoService.findByLogin(login);
-
+		
 		if (usr == null)
 			usr = usrService.findByLogin(login);
 
@@ -42,7 +42,7 @@ public class LoginController {
 		if (request.isUserInRole("ROLE_PSICO"))
 			return "redirect:dashboard";
 		if (request.isUserInRole("ROLE_USER"))
-			return "home";
+			return "redirect:usuario/home";
 
 		return "403";
 	}

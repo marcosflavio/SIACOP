@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.com.siacop.model.Psicologa;
+import br.com.siacop.service.IServiceConsulta;
 import br.com.siacop.service.IServicePsicologa;
 import br.com.siacop.service.IServiceSolicitacaoConsulta;
 import br.com.siacop.service.ServicePsicologa;
@@ -20,10 +21,17 @@ public class PsicologaController {
 
 	@Autowired
 	private IServiceSolicitacaoConsulta serviceSolicitacaoConsulta;
-
+	
+	@Autowired
+	private IServiceConsulta consultaService;
+	
 	@RequestMapping("/dashboard")
 	public String dashboard(Model model) {
-		Psicologa psi = getCurrentUser(psicologaSvc);
+		Psicologa psi = getCurrentUser(psicologaSvc); //Pode ser assim ou usar variavel de sessao, whatever
+		int consultas = consultaService.countByPsicologa(psi);
+		long solicitacoes = serviceSolicitacaoConsulta.count();
+		model.addAttribute("consultas",consultas);
+		model.addAttribute("solicitacoes",solicitacoes);		
 		model.addAttribute("usuario", psi);
 		return "index";
 	}

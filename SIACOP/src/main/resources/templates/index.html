@@ -40,7 +40,7 @@
 									<i class="fa fa-envelope-o fa-4x"></i>
 								</div>
 								<div class="col-xs-9 text-right">
-									<div class="huge">666</div>
+									<div class="huge" th:text="${#objects.nullSafe(solicitacoes,0)}"></div>
 									<div>Solitação de Consultas</div>
 								</div>
 							</div>
@@ -62,7 +62,7 @@
 									<i class="fa fa-calendar fa-4x"></i>
 								</div>
 								<div class="col-xs-9 text-right">
-									<div class="huge">69</div>
+									<div class="huge"  th:text="${#objects.nullSafe(consultas,0)}" ></div>
 									<div>Consultas agendadas</div>
 								</div>
 							</div>

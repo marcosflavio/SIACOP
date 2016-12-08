@@ -22,6 +22,8 @@ import br.com.siacop.enumeradores.TipoSemestre;
 import br.com.siacop.enumeradores.TipoSituacaoFuncional;
 import br.com.siacop.enumeradores.TipoTurno;
 import br.com.siacop.model.Usuario;
+import br.com.siacop.service.IServiceConsulta;
+import br.com.siacop.service.IServiceSolicitacaoConsulta;
 import br.com.siacop.service.IServiceUsuario;
 
 @Controller
@@ -29,7 +31,13 @@ import br.com.siacop.service.IServiceUsuario;
 public class UsuarioController {
 
 	@Autowired
-	private IServiceUsuario service;
+	private IServiceUsuario usrService;
+	
+	@Autowired
+	private IServiceSolicitacaoConsulta solicService;
+	
+	@Autowired
+	private IServiceConsulta consultaService;
 	
 	@RequestMapping("/novo")
 	public ModelAndView novo(Usuario usuario) {
@@ -53,7 +61,7 @@ public class UsuarioController {
 		if (result.hasErrors())
 			return novo(usuario);		
 		
-		service.save(usuario);
+		usrService.save(usuario);
 		attributes.addFlashAttribute("mensagemSucesso", "Usuário cadastrado com sucesso!");
 		
 		return new ModelAndView("redirect:/usuario/novo");
@@ -63,6 +71,10 @@ public class UsuarioController {
 	@RequestMapping(value = "/home", method = RequestMethod.GET)
 	public String home(Model model, HttpSession session) {
 		Usuario usr = (Usuario)session.getAttribute("user_logged");
+		int totalConsultas = consultaService.countByUsuario(usr);
+		int totalSolcitacoes = solicService.countByUsuario(usr);
+		model.addAttribute("totalConsultas",totalConsultas);
+		model.addAttribute("totalSolicitacoes",totalSolcitacoes);
 		model.addAttribute("usuario", usr);
 		return "usuario/home";
 	}

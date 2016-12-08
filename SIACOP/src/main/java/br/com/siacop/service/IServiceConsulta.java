@@ -3,6 +3,7 @@ package br.com.siacop.service;
 import java.util.List;
 
 import br.com.siacop.model.Consulta;
+import br.com.siacop.model.Psicologa;
 import br.com.siacop.model.Usuario;
 
 public interface IServiceConsulta {
@@ -16,7 +17,9 @@ public interface IServiceConsulta {
 	public Consulta update(Consulta consulta);
 	
 	public int countByUsuario(Usuario usuario);
-
+	
+	public int countByPsicologa(Psicologa psicologa);
+	
 	public void delete(int id);
 
 }

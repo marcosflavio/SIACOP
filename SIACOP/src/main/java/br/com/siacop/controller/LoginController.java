@@ -19,7 +19,7 @@ public class LoginController {
 	@Autowired
 	private IServicePsicologa psicoService;
 
-	@RequestMapping(value = { "/login" }, method = { RequestMethod.GET, RequestMethod.POST })
+	@RequestMapping(value = {"/", "/login" }, method = { RequestMethod.GET, RequestMethod.POST })
 	public String login() {
 		return "login";
 	}

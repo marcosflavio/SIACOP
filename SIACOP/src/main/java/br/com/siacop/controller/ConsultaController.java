@@ -1,5 +1,7 @@
 package br.com.siacop.controller;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,6 +19,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import br.com.siacop.enumeradores.TipoDiaSemana;
 import br.com.siacop.enumeradores.TipoPeriodo;
@@ -82,13 +86,20 @@ public class ConsultaController {
 	
 	@RequestMapping(value="/getconsultas")
 	public @ResponseBody List<EventFC> getConsultas(Model model){
+		
+		DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+		ObjectMapper mapper = new ObjectMapper();
+		mapper.setDateFormat(df);
+		
 		List<Consulta> consultas = serviceConsulta.findAll();
-		List<EventFC> events = new ArrayList<EventFC>(); 
+		List<EventFC> events = new ArrayList<EventFC>();
+		
+		
 		for (Consulta consulta : consultas) {
 			EventFC evento = new EventFC();
 			evento.setTitle(consulta.getUsuario().getNome() + " - " + consulta.getStatusConsulta());
-			evento.setStart(consulta.getDataConsulta());
-			
+			evento.setStart(consulta.getDataConsulta().toString());
+			events.add(evento);
 		}
 		return events;
 	}

@@ -5,7 +5,7 @@ import java.util.Date;
 public class EventFC {
 	
 	String title;
-	Date start;
+	String start;
 	//Date end;
 	
 	public String getTitle() {
@@ -14,10 +14,10 @@ public class EventFC {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	public Date getStart() {
+	public String getStart() {
 		return start;
 	}
-	public void setStart(Date start) {
+	public void setStart(String start) {
 		this.start = start;
 	}
 //	public Date getEnd() {

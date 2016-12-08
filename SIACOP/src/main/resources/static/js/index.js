@@ -16,7 +16,7 @@ $('#calendar').fullCalendar({
 		},
 		color: '#2514f7'
 	},
-	defaultDate : '2016-09-12',
+	defaultDate : '2016-12-08',
 	navLinks : true, // can click day/week names to navigate views
 	eventLimit : true, // allow "more" link when too many events
 	loading: function( isLoading, view ) {

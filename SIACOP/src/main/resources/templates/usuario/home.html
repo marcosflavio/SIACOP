@@ -39,8 +39,8 @@
 										<i class="fa fa-envelope-o fa-4x"></i>
 									</div>
 									<div class="col-xs-9 text-right">
-										<div class="huge">666</div>
-										<div>Solitação de Consultas</div>
+										<div class="huge" th:text="${#objects.nullSafe(totalSolicitacoes,0)}"></div>
+										<div>Solicitações enviadas</div>
 									</div>
 								</div>
 							</div>

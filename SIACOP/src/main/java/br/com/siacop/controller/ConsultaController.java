@@ -50,13 +50,13 @@ public class ConsultaController {
 		
 		Consulta consulta = new Consulta();
 		consulta.setUsuario(usuario);
-		consulta.setPsicologa(psicologa);				
+		consulta.setPsicologa(psicologa);		
 		
 		ModelAndView mv = new ModelAndView("confirmacaoConsulta");
 		mv.addObject("consulta", consulta);
 		mv.addObject("tipoDiaSemana", TipoDiaSemana.values());
 		mv.addObject("tipoPeriodo", TipoPeriodo.values());
-		
+		mv.addObject("usuario", psicologa);
 		return mv;
 	}
 	
@@ -76,10 +76,10 @@ public class ConsultaController {
 			
 			return new ModelAndView("redirect:/listaSolicitacoesConsultas");
 		} catch (ClassCastException e){
-			attributes.addFlashAttribute("mensagemSucesso", "Erro ao confirmar a consulta! Operação abortada!");
+			attributes.addFlashAttribute("mensagemErro", "Erro ao confirmar a consulta! Operação abortada!");
 			return new ModelAndView("redirect:/listaSolicitacoesConsultas");
 		} catch (EmailException e){
-			attributes.addFlashAttribute("mensagemSucesso", "Erro ao enviar email de confirmação!");
+			attributes.addFlashAttribute("mensagemAviso", "Erro ao enviar email de confirmação!");
 			return new ModelAndView("redirect:/listaSolicitacoesConsultas");
 		}
 	}

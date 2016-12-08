@@ -25,8 +25,11 @@ public class SolicitacaoConsultaController {
 	private IServiceSolicitacaoConsulta service;
 
 	@RequestMapping(value = "/solicitacaoConsulta")
-	public ModelAndView novo(SolicitacaoConsulta solicitacaoConsulta) {
+	public ModelAndView novo(SolicitacaoConsulta solicitacaoConsulta, HttpSession session) {
+		Usuario usuario = (Usuario) session.getAttribute("user_logged");
+		
 		ModelAndView mv = new ModelAndView("solicitacaoConsulta");
+		mv.addObject("usuario", usuario);
 		mv.addObject("tipoEncaminhamento", TipoEncaminhamento.values());
 		mv.addObject("tipoPeriodo", TipoPeriodo.values());
 		mv.addObject("tipoDiaSemana", TipoDiaSemana.values());
@@ -38,7 +41,7 @@ public class SolicitacaoConsultaController {
 	public ModelAndView salva(@Valid SolicitacaoConsulta solicitacaoConsulta, BindingResult result, RedirectAttributes attributes, HttpSession session) {
 		try {
 			if (result.hasErrors())
-				return novo(solicitacaoConsulta);
+				return novo(solicitacaoConsulta, session);
 
 			Usuario user = (Usuario) session.getAttribute("user_logged");
 

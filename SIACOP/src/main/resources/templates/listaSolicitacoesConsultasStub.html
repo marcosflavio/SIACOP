@@ -16,8 +16,19 @@
 						<button type="button" class="close" data-dismiss="alert">
 							<span aria-hidden="true">&times;</span>
 						</button>
-						
 						<span th:text="${mensagemSucesso}"></span>
+					</div>
+					<div class="alert  alert-danger  alert-dismissible" role="alert" th:if="${not #strings.isEmpty(mensagemErro)}">
+						<button type="button" class="close" data-dismiss="alert">
+							<span aria-hidden="true">&times;</span>
+						</button>	
+						<span th:text="${mensagemErro}"></span>
+					</div>
+					<div class="alert  alert-warning  alert-dismissible" role="alert" th:if="${not #strings.isEmpty(mensagemAviso)}">
+						<button type="button" class="close" data-dismiss="alert">
+							<span aria-hidden="true">&times;</span>
+						</button>
+						<span th:text="${mensagemAviso}"></span>
 					</div>
 					<h1 class="text-center login-title">Lista de
 						Solicita&ccedil;&otilde;es de Consulta</h1>					

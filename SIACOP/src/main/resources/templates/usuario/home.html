@@ -9,10 +9,8 @@
 </head>
 
 <section layout:fragment="content">
-
 	<div id="page-wrapper">
-	<div class="container-fluid">
-
+		<div class="container-fluid">
 			<!-- Page Heading -->
 			<div class="row">
 				<div class="col-lg-12">
@@ -27,8 +25,6 @@
 				</div>
 			</div>
 			<!-- /.row -->
-
-
 			<div class="row">
 				<div class="col-lg-3 col-md-6">
 					<div class="panel panel-primary">
@@ -39,7 +35,8 @@
 										<i class="fa fa-envelope-o fa-4x"></i>
 									</div>
 									<div class="col-xs-9 text-right">
-										<div class="huge" th:text="${#objects.nullSafe(totalSolicitacoes,0)}"></div>
+										<div class="huge"
+											th:text="${#objects.nullSafe(totalSolicitacoes,0)}"></div>
 										<div>Solicitações enviadas</div>
 									</div>
 								</div>
@@ -61,15 +58,16 @@
 									<i class="fa fa-calendar fa-4x"></i>
 								</div>
 								<div class="col-xs-9 text-right">
-									<div class="huge" th:text="${#objects.nullSafe(totalConsultas,0)}"></div>
+									<div class="huge"
+										th:text="${#objects.nullSafe(totalConsultas,0)}"></div>
 									<div>Consultas agendadas</div>
 								</div>
 							</div>
 						</div>
 						<a href="#">
 							<div class="panel-footer">
-								<span class="pull-left">Ver minhas consultas</span> <span class="pull-right"><i
-									class="fa fa-arrow-circle-right"></i></span>
+								<span class="pull-left">Ver minhas consultas</span> <span
+									class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
 								<div class="clearfix"></div>
 							</div>
 						</a>
@@ -85,7 +83,7 @@
 	</div>
 	<!-- /#page-wrapper -->
 
-<script type="text/javascript" th:src='@{js/index.js}'></script>
+	<script type="text/javascript" th:src='@{js/index.js}'></script>
 </section>
 
 </html>

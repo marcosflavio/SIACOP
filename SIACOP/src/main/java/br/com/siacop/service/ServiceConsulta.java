@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.siacop.model.Consulta;
+import br.com.siacop.model.Usuario;
 import br.com.siacop.repository.IRepositoryConsulta;
 
 @Service
@@ -38,6 +39,11 @@ public class ServiceConsulta implements IServiceConsulta {
 	public void delete(int id) {
 		repository.delete(id);
 		
+	}
+	
+	@Override
+	public int countByUsuario(Usuario usuario) {
+		return repository.countByUsuario(usuario);
 	}
 
 	@Override

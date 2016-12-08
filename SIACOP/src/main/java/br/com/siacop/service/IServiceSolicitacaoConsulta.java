@@ -2,7 +2,8 @@ package br.com.siacop.service;
 
 import java.util.List;
 
-import br.com.siacop.model.SolicitacaoConsulta;;
+import br.com.siacop.model.SolicitacaoConsulta;
+import br.com.siacop.model.Usuario;;
 
 public interface IServiceSolicitacaoConsulta {
 	
@@ -13,6 +14,8 @@ public interface IServiceSolicitacaoConsulta {
 	public SolicitacaoConsulta findOne(int id);
 	
 	public SolicitacaoConsulta update(SolicitacaoConsulta solicitacaoConsulta);
+	
+	public int countByUsuario(Usuario usuario);
 
 	public void delete(int id);
 

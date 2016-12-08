@@ -7,6 +7,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import br.com.siacop.model.SolicitacaoConsulta;
+import br.com.siacop.model.Usuario;
 import br.com.siacop.repository.IRepositorySolicitacaoConsulta;
 
 @Service
@@ -35,7 +36,12 @@ public class ServiceSolicitacaoConsulta implements IServiceSolicitacaoConsulta {
 	public void delete(int id) {
 		repository.delete(id);
 	}
-
+	
+	@Override
+	public int countByUsuario(Usuario usuario) {
+		return repository.countByUsuario(usuario);
+	}
+	
 	@Override
 	public SolicitacaoConsulta save(SolicitacaoConsulta solicitacao) {
 		return repository.save(solicitacao);

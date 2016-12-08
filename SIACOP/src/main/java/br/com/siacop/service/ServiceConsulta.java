@@ -18,8 +18,6 @@ public class ServiceConsulta implements IServiceConsulta {
 
 	@Autowired
 	private IRepositoryConsulta repository;
-	
-	
 
 	@Override
 	public List<br.com.siacop.model.Consulta> findAll() {
@@ -39,14 +37,14 @@ public class ServiceConsulta implements IServiceConsulta {
 	@Override
 	public void delete(int id) {
 		repository.delete(id);
-		
+
 	}
-	
+
 	@Override
 	public int countByUsuario(Usuario usuario) {
 		return repository.countByUsuario(usuario);
 	}
-	
+
 	@Override
 	public int countByPsicologa(Psicologa psicologa) {
 		return repository.countByPsicologa(psicologa);
@@ -57,6 +55,4 @@ public class ServiceConsulta implements IServiceConsulta {
 		return repository.save(consulta);
 	}
 
-	
-	
 }

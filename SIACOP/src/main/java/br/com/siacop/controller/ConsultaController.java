@@ -43,7 +43,7 @@ public class ConsultaController {
 	private IServiceSolicitacaoConsulta serviceSolicitacaoConsulta;
 	
 	@RequestMapping(value = "/confirmacaoConsulta", method = RequestMethod.GET)
-	public ModelAndView novo(@RequestParam(value = "idSolicitacao") int idSolicitacao, HttpSession session) {		
+	public ModelAndView getFormConfirmarConsulta(@RequestParam(value = "idSolicitacao") int idSolicitacao, HttpSession session) {		
 		SolicitacaoConsulta solicitacaoConsulta = serviceSolicitacaoConsulta.findOne(idSolicitacao);
 		Usuario usuario = solicitacaoConsulta.getUsuario();
 		Psicologa psicologa = (Psicologa) session.getAttribute("user_logged");
@@ -64,7 +64,7 @@ public class ConsultaController {
 	public ModelAndView confirmarConsulta(@RequestParam(value = "idSolicitacao") int idSolicitacao, @Valid Consulta consulta, BindingResult result, RedirectAttributes attributes, HttpSession session){
 		try{
 			if (result.hasErrors())			
-				return novo(idSolicitacao, session);				
+				return getFormConfirmarConsulta(idSolicitacao, session);				
 			
 			serviceConsulta.save(consulta);
 			serviceSolicitacaoConsulta.delete(idSolicitacao);
@@ -85,22 +85,21 @@ public class ConsultaController {
 	}
 	
 	@RequestMapping(value="/getconsultas")
-	public @ResponseBody List<EventFC> getConsultas(Model model){
-		
-		DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+	public @ResponseBody List<EventFC> getConsultas(Model model){	
+		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 		ObjectMapper mapper = new ObjectMapper();
 		mapper.setDateFormat(df);
 		
 		List<Consulta> consultas = serviceConsulta.findAll();
 		List<EventFC> events = new ArrayList<EventFC>();
 		
-		
 		for (Consulta consulta : consultas) {
 			EventFC evento = new EventFC();
-			evento.setTitle(consulta.getUsuario().getNome() + " - " + consulta.getStatusConsulta());
+			evento.setTitle(consulta.getUsuario().getNome() + " - " + consulta.getHorario());
 			evento.setStart(consulta.getDataConsulta().toString());
 			events.add(evento);
 		}
+		
 		return events;
 	}
 }

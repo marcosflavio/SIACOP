@@ -7,7 +7,6 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.siacop.model.Psicologa;
 import br.com.siacop.model.SolicitacaoConsulta;
 import br.com.siacop.model.Usuario;
 import br.com.siacop.repository.IRepositorySolicitacaoConsulta;

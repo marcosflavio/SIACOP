@@ -1,8 +1,8 @@
 package br.com.siacop.controller;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -78,6 +78,5 @@ public class UsuarioController {
 		model.addAttribute("usuario", usr);
 		return "usuario/home";
 	}
-
 	
 }

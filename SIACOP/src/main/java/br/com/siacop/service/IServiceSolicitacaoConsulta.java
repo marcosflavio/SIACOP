@@ -2,7 +2,6 @@ package br.com.siacop.service;
 
 import java.util.List;
 
-import br.com.siacop.model.Psicologa;
 import br.com.siacop.model.SolicitacaoConsulta;
 import br.com.siacop.model.Usuario;;
 
